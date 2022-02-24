@@ -93,7 +93,12 @@ workflows:
       - test:         # Then run test,
           requires:   # Test requires that build passes for it to run.
             - build   # Finally, run the build job.
-
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: sequential-branch-filter
 
 # Previous
 # version: 2.0
