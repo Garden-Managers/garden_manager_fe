@@ -48,7 +48,7 @@ jobs:
       # Run rspec in parallel
       - ruby/rspec-test
 
- deploy:
+  deploy:
     machine:
         enabled: true
     working_directory: ~/circleci-demo-workflows
