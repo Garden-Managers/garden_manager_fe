@@ -26,7 +26,7 @@ jobs:
   test:  # our next job, called "test"
     # we run "parallel job containers" to enable speeding up our tests;
     # this splits our tests across multiple containers.
-    parallelism: 3
+    parallelism: 6
     # here we set TWO docker images.
     docker:
       - image: cimg/ruby:2.7.2-node # this is our primary docker image, where step commands run.
@@ -72,24 +72,24 @@ jobs:
       #   name: rspec tests
       #   command: bundle exec rspec
       - ruby/rspec-test
-  deploy:
-      machine:
-          enabled: true
-      working_directory: ~/circleci-demo-workflows
-      environment:
-        HEROKU_APP: "polar-lowlands-70534" # define env var $HEROKU_APP
-      steps:
-        - checkout
-        - run:
-            name: Setup Heroku
-            command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
+#   deploy:
+#       machine:
+#           enabled: true
+#       working_directory: ~/circleci-demo-workflows
+#       environment:
+#         HEROKU_APP: "polar-lowlands-70534" # define env var $HEROKU_APP
+#       steps:
+#         - checkout
+#         - run:
+#             name: Setup Heroku
+#             command: bash .circleci/setup-heroku.sh # run a script to set up Heroku
 
-        - run:
-            command: |
-              git push heroku sequential-branch-filter:main
-              heroku run rake db:migrate
-              sleep 5 # sleep for 5 seconds to wait for dynos
-              heroku restart
+#         - run:
+#             command: |
+#               git push heroku sequential-branch-filter:main
+#               heroku run rake db:migrate
+#               sleep 5 # sleep for 5 seconds to wait for dynos
+#               heroku restart
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
   version: 2
@@ -102,12 +102,12 @@ workflows:
           command: bundle exec rspec         # Then run test,
           requires:   # Test requires that build passes for it to run.
             - build   # Finally, run the build job.
-      - deploy:
-          requires:
-            - test
-          filters:
-            branches:
-              only: sequential-branch-filter
+#       - deploy:
+#           requires:
+#             - test
+#           filters:
+#             branches:
+#               only: sequential-branch-filter
 
 # Previous
 # version: 2.0
