@@ -48,6 +48,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'faraday'
   gem 'figaro'
+  gem 'rspec_junit_formatter'
 end
 
 group :development do
