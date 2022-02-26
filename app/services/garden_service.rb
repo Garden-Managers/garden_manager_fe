@@ -11,9 +11,9 @@ class GardenService
     get_url('/hardinessZone')
   end
 
-  def get_url(url, zip = nil)
+  def get_url(url, query = nil)
     conn = Faraday.new(url: 'https://ancient-basin-82077.herokuapp.com') do |faraday|
-      faraday.params[:zip] = zip unless zip.nil?
+      faraday.params[:query] = query unless query.nil?
     end
 
     response = conn.get(url)
