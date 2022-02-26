@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe HardinessZone do
-  it "returns the hardiness zone for a given zipcode" do
+  xit 'returns the hardiness zone for a given zipcode' do
     data = {
       'id' => '1',
       'attributes' => {
@@ -9,6 +9,6 @@ RSpec.describe HardinessZone do
       }
     }
     info = HardinessZone.new(data)
-    expect(info.zone).to eq "10b"
+    expect(info.zone).to eq '10b'
   end
 end

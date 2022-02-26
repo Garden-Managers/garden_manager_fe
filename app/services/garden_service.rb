@@ -1,18 +1,22 @@
 class GardenService
-  def frost_dates
-    get_url("/frostDates")
+  def get_frost_dates(id)
+    get_url("/api/v1/users/#{id}/frostDates")
   end
 
-  def seven_day_forecast
-    get_url("/sevenDayForecast")
+  def get_forecast(id)
+    get_url("/api/v1/users/#{id}/forecast")
   end
 
   def hardiness_zone
-    get_url("/hardinessZone")
+    get_url('/hardinessZone')
   end
 
-  def get_url(url)
-    response = Faraday.get("https://ancient-basin-82077.herokuapp.com/api/v1#{url}")
+  def get_url(url, zip = nil)
+    conn = Faraday.new(url: 'https://ancient-basin-82077.herokuapp.com') do |faraday|
+      faraday.params[:zip] = zip unless zip.nil?
+    end
+
+    response = conn.get(url)
     json = JSON.parse(response.body, symbolize_names: true)
   end
 end

@@ -1,16 +1,16 @@
 class GardenFacade
-  def frost_dates
-    service.frost_dates.map {|data| FrostDates.new(data)}
+  def frost_dates(id)
+    service.get_frost_dates(id).map { |data| FrostDate.new(data) }
   end
 
   def hardiness_zone
-    service.hardiness_zone.map {|data| HardinessZone.new(data)}
+    service.hardiness_zone.map { |data| HardinessZone.new(data) }
   end
 
-  def seven_day_forecast
-    service.seven_day_forecast.map {|data| SevenDayForecast.new(data)}
+  def forecast(id)
+    service.get_forecast(id)[:daily].map { |data| Forecast.new(data) }
   end
-  
+
   def service
     GardenService.new
   end
