@@ -1,0 +1,364 @@
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "plant",
+            "attributes": {
+                "name": "Tomato",
+                "frost_date": 7,
+                "maturity": 72
+            }
+        },
+        {
+            "id": "2",
+            "type": "plant",
+            "attributes": {
+                "name": "Eggplant",
+                "frost_date": 14,
+                "maturity": 65
+            }
+        },
+        {
+            "id": "3",
+            "type": "plant",
+            "attributes": {
+                "name": "Kale",
+                "frost_date": -21,
+                "maturity": 60
+            }
+        },
+        {
+            "id": "4",
+            "type": "plant",
+            "attributes": {
+                "name": "Cabbage",
+                "frost_date": -28,
+                "maturity": 98
+            }
+        },
+        {
+            "id": "5",
+            "type": "plant",
+            "attributes": {
+                "name": "Artichoke",
+                "frost_date": 0,
+                "maturity": 85
+            }
+        },
+        {
+            "id": "6",
+            "type": "plant",
+            "attributes": {
+                "name": "Onion",
+                "frost_date": -21,
+                "maturity": 105
+            }
+        },
+        {
+            "id": "7",
+            "type": "plant",
+            "attributes": {
+                "name": "Summer Squash",
+                "frost_date": 12,
+                "maturity": 47
+            }
+        },
+        {
+            "id": "8",
+            "type": "plant",
+            "attributes": {
+                "name": "Spinach",
+                "frost_date": -35,
+                "maturity": 25
+            }
+        },
+        {
+            "id": "9",
+            "type": "plant",
+            "attributes": {
+                "name": "Watermelon",
+                "frost_date": 14,
+                "maturity": 87
+            }
+        },
+        {
+            "id": "10",
+            "type": "plant",
+            "attributes": {
+                "name": "Pumpkin",
+                "frost_date": 14,
+                "maturity": 100
+            }
+        },
+        {
+            "id": "11",
+            "type": "plant",
+            "attributes": {
+                "name": "Peppers",
+                "frost_date": 14,
+                "maturity": 78
+            }
+        },
+        {
+            "id": "12",
+            "type": "plant",
+            "attributes": {
+                "name": "Cucumber",
+                "frost_date": 14,
+                "maturity": 48
+            }
+        },
+        {
+            "id": "13",
+            "type": "plant",
+            "attributes": {
+                "name": "Cauliflower",
+                "frost_date": -14,
+                "maturity": 62
+            }
+        },
+        {
+            "id": "14",
+            "type": "plant",
+            "attributes": {
+                "name": "Cantaloupe",
+                "frost_date": 14,
+                "maturity": 79
+            }
+        },
+        {
+            "id": "15",
+            "type": "plant",
+            "attributes": {
+                "name": "Broccoli",
+                "frost_date": -14,
+                "maturity": 57
+            }
+        },
+        {
+            "id": "16",
+            "type": "plant",
+            "attributes": {
+                "name": "Beets",
+                "frost_date": -14,
+                "maturity": 50
+            }
+        },
+        {
+            "id": "17",
+            "type": "plant",
+            "attributes": {
+                "name": "Lettuce",
+                "frost_date": -28,
+                "maturity": 54
+            }
+        },
+        {
+            "id": "18",
+            "type": "plant",
+            "attributes": {
+                "name": "Peas",
+                "frost_date": -56,
+                "maturity": 57
+            }
+        },
+        {
+            "id": "19",
+            "type": "plant",
+            "attributes": {
+                "name": "Celery",
+                "frost_date": 7,
+                "maturity": 80
+            }
+        },
+        {
+            "id": "20",
+            "type": "plant",
+            "attributes": {
+                "name": "Sunflowers",
+                "frost_date": 0,
+                "maturity": 65
+            }
+        },
+        {
+            "id": "21",
+            "type": "plant",
+            "attributes": {
+                "name": "Tomato",
+                "frost_date": 7,
+                "maturity": 72
+            }
+        },
+        {
+            "id": "22",
+            "type": "plant",
+            "attributes": {
+                "name": "Eggplant",
+                "frost_date": 14,
+                "maturity": 65
+            }
+        },
+        {
+            "id": "23",
+            "type": "plant",
+            "attributes": {
+                "name": "Kale",
+                "frost_date": -21,
+                "maturity": 60
+            }
+        },
+        {
+            "id": "24",
+            "type": "plant",
+            "attributes": {
+                "name": "Cabbage",
+                "frost_date": -28,
+                "maturity": 98
+            }
+        },
+        {
+            "id": "25",
+            "type": "plant",
+            "attributes": {
+                "name": "Artichoke",
+                "frost_date": 0,
+                "maturity": 85
+            }
+        },
+        {
+            "id": "26",
+            "type": "plant",
+            "attributes": {
+                "name": "Onion",
+                "frost_date": -21,
+                "maturity": 105
+            }
+        },
+        {
+            "id": "27",
+            "type": "plant",
+            "attributes": {
+                "name": "Summer Squash",
+                "frost_date": 12,
+                "maturity": 47
+            }
+        },
+        {
+            "id": "28",
+            "type": "plant",
+            "attributes": {
+                "name": "Spinach",
+                "frost_date": -35,
+                "maturity": 25
+            }
+        },
+        {
+            "id": "29",
+            "type": "plant",
+            "attributes": {
+                "name": "Watermelon",
+                "frost_date": 14,
+                "maturity": 87
+            }
+        },
+        {
+            "id": "30",
+            "type": "plant",
+            "attributes": {
+                "name": "Pumpkin",
+                "frost_date": 14,
+                "maturity": 100
+            }
+        },
+        {
+            "id": "31",
+            "type": "plant",
+            "attributes": {
+                "name": "Peppers",
+                "frost_date": 14,
+                "maturity": 78
+            }
+        },
+        {
+            "id": "32",
+            "type": "plant",
+            "attributes": {
+                "name": "Cucumber",
+                "frost_date": 14,
+                "maturity": 48
+            }
+        },
+        {
+            "id": "33",
+            "type": "plant",
+            "attributes": {
+                "name": "Cauliflower",
+                "frost_date": -14,
+                "maturity": 62
+            }
+        },
+        {
+            "id": "34",
+            "type": "plant",
+            "attributes": {
+                "name": "Cantaloupe",
+                "frost_date": 14,
+                "maturity": 79
+            }
+        },
+        {
+            "id": "35",
+            "type": "plant",
+            "attributes": {
+                "name": "Broccoli",
+                "frost_date": -14,
+                "maturity": 57
+            }
+        },
+        {
+            "id": "36",
+            "type": "plant",
+            "attributes": {
+                "name": "Beets",
+                "frost_date": -14,
+                "maturity": 50
+            }
+        },
+        {
+            "id": "37",
+            "type": "plant",
+            "attributes": {
+                "name": "Lettuce",
+                "frost_date": -28,
+                "maturity": 54
+            }
+        },
+        {
+            "id": "38",
+            "type": "plant",
+            "attributes": {
+                "name": "Peas",
+                "frost_date": -56,
+                "maturity": 57
+            }
+        },
+        {
+            "id": "39",
+            "type": "plant",
+            "attributes": {
+                "name": "Celery",
+                "frost_date": 7,
+                "maturity": 80
+            }
+        },
+        {
+            "id": "40",
+            "type": "plant",
+            "attributes": {
+                "name": "Sunflowers",
+                "frost_date": 0,
+                "maturity": 65
+            }
+        }
+    ]
+}
