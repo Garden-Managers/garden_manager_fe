@@ -1,0 +1,9 @@
+{
+    "data": {
+        "user_id": "1",
+        "type": "user",
+        "attributes": {
+            "hardiness_zone": "10b"
+        }
+    }
+}

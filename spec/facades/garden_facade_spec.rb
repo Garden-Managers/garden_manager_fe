@@ -15,11 +15,7 @@ RSpec.describe GardenFacade do
       expect(facade.frost_dates('1').count).to eq(2)
     end
   end
-  describe '#HardinessZone/1' do
-    xit 'returns a hardiness zone poro' do
-      expect(facade.hardiness_zone(80_234)).to be_a Hash
-    end
-  end
+
   describe '#forecast/1' do
     it '#forecast' do
       response = File.read('spec/fixtures/forecast.json')
@@ -30,6 +26,19 @@ RSpec.describe GardenFacade do
                    })
       forecast = facade.forecast(1).first
       expect(forecast).to be_a Forecast
+    end
+  end
+
+  describe '#find_user/1' do
+    it 'creates a user' do
+      response = File.read('spec/fixtures/user.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      user = facade.find_user(1)
+      expect(user).to be_a User
     end
   end
 end
