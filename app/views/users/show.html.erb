@@ -1,0 +1,12 @@
+
+<div class='weather'>
+<ul>
+  <h2>Weather Forecast</h2>
+<% @forecast.each do |forecast| %>
+ <p ><%= forecast.date %></p>
+  <li>Weather: <%= forecast.weather %></li>
+  <li>High: <%= forecast.high %>&deg; F</li>
+  <li>Low: <%= forecast.low %>&deg; F</li>
+<% end %>
+</ul>
+</div>
