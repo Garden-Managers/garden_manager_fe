@@ -43,4 +43,21 @@ RSpec.describe GardenService do
       expect(forecast[:daily].first[:weather]).to be_a String
     end
   end
+  describe '#get_user/1' do
+    it 'returns a json of a user' do
+      response = File.read('spec/fixtures/user.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      user = service.get_user(1)
+      expect(user).to be_a Hash
+      expect(user[:data]).to be_a Hash
+      expect(user[:data]).to have_key(:user_id)
+      expect(user[:data][:attributes]).to have_key(:hardiness_zone)
+      expect(user[:data][:user_id]).to be_a String
+      expect(user[:data][:attributes][:hardiness_zone]).to be_a String
+    end
+  end
 end
