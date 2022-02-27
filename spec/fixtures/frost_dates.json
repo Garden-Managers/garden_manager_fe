@@ -1,0 +1,12 @@
+[
+    {
+        "season": "fall",
+        "temperature_threshold": "36",
+        "prob_90": "0531"
+    },
+    {
+        "season": "spring",
+        "temperature_threshold": "32",
+        "prob_90": "0520"
+    }
+]

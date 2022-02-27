@@ -6,4 +6,8 @@ RSpec.describe 'Landing Page' do
 
     expect(page).to have_content "Welcome to The Garden Manager!"
   end
+
+  xit "has a link to sign in" do
+
+  end
 end
