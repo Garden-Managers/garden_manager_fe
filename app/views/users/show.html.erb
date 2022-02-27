@@ -10,3 +10,8 @@
 <% end %>
 </ul>
 </div>
+<div class='frost-dates'>
+  <p>Fall frost date: <%= Date::MONTHNAMES[@fall.date[0..1].to_i] %> <%= @fall.date[2..3] %>, temperature <%= @fall.temperature_threshold %>&deg; F</p>
+  <p>Spring frost date: <%= Date::MONTHNAMES[@spring.date[0..1].to_i] %> <%= @spring.date[2..3] %>, temperature <%= @spring.temperature_threshold %>&deg; F</p>
+  <%= @spring %>
+</div>
