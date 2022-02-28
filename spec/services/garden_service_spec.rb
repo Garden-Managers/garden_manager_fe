@@ -60,4 +60,27 @@ RSpec.describe GardenService do
       expect(user[:data][:attributes][:hardiness_zone]).to be_a String
     end
   end
+  describe '#get_user_plants/1' do
+    it 'returns a json of a user plants' do
+      response = File.read('spec/fixtures/plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/plants')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      plants = service.get_user_plants(1)
+      plant = plants[:data].first
+      expect(plants).to be_a Hash
+      expect(plants[:data]).to be_a Array
+      expect(plant).to have_key(:id)
+      expect(plant[:id]).to be_a(String)
+      expect(plant).to have_key(:type)
+      expect(plant[:type]).to eq('plant')
+      expect(plant).to have_key(:attributes)
+      expect(plant[:attributes]).to be_a(Hash)
+      expect(plant[:attributes][:name]).to be_a(String)
+      expect(plant[:attributes][:frost_date]).to be_a(Integer)
+      expect(plant[:attributes][:maturity]).to be_a(Integer)
+    end
+  end
 end
