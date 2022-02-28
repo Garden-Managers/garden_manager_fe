@@ -1,4 +1,9 @@
 class GardenService
+
+  def get_email(email)
+    get_url("/api/v1/user?email=#{email}")
+  end
+
   def get_frost_dates(id)
     get_url("/api/v1/users/#{id}/frostDates")
   end

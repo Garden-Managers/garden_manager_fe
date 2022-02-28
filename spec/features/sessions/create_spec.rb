@@ -8,9 +8,9 @@ RSpec.describe 'create a user' do
   end 
 
     it 'can find/create a user' do 
-      login_with_oath
       visit "/auth/google_oauth2"
-      save_and_open_page
+      visit dashboard_path
+      
     # user: testing omniauth2 google rails
   end
 end 

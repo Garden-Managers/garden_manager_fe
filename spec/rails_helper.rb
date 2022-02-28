@@ -22,7 +22,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -63,18 +63,21 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-end
+    config.include IntegrationSpecHelper, :type => :request
+  end
+
+  Capybara.default_host = 'http://example.org'
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-      :provider => "google_oauth2",
-      :uid => "123456789",
-      :info => {
-        :name => "Tony Stark",
-        :email => "tony@stark.com"
-      },
-      :credentials => {
-        :token => "token",
-        :refresh_token => "refresh token"
-      }
+    :provider => "google_oauth2",
+    :uid => "123456789",
+    :info => {
+      :name => "Tony Stark",
+      :email => "tony@stark.com"
+    },
+    :credentials => {
+      :token => "token",
+      :refresh_token => "refresh token"
     }
-  )
+  }
+)
