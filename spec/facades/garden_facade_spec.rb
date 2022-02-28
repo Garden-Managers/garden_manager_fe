@@ -41,4 +41,17 @@ RSpec.describe GardenFacade do
       expect(user).to be_a User
     end
   end
+  describe '#find_user/1' do
+    it 'creates a user' do
+      response = File.read('spec/fixtures/plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/plants')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      facade.plants(1).each do |plant|
+        expect(plant).to be_a Plant
+      end
+    end
+  end
 end
