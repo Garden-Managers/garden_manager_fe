@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def create
     auth_hash = request.env['omniauth.auth'] #getting all info from google
     email = auth_hash['info']['email'] #grabbing email
@@ -18,3 +19,8 @@ class UsersController < ApplicationController
     #@user = UserFacade
   end
 end 
+
+  def show
+    @forecast = GardenFacade.new.forecast(current_user.user_id)
+  end
+end
