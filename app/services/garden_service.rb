@@ -25,6 +25,10 @@ class GardenService
     get_url("/api/v1/users/#{id}")
   end
 
+  def get_user_plants(id)
+    get_url("api/v1/users/#{id}/plants")
+  end
+
   def get_url(url, query = nil)
     conn = Faraday.new(url: 'https://ancient-basin-82077.herokuapp.com') do |faraday|
       faraday.params[:query] = query unless query.nil?

@@ -64,16 +64,39 @@ RSpec.describe GardenService do
     it 'returns a json of a new user' do
       response = File.read('spec/fixtures/create_user.json')
       stub_request(:post, "https://ancient-basin-82077.herokuapp.com/api/v1/users?email=happy22@example.com&name=Raccoon22")
-        .to_return({
-                     status: 200,
-                     body: response
-                   })
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
       user = service.create_user("happy22@example.com", "Raccoon22")
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
       expect(user[:data][:id]).to be_a String
       expect(user[:data][:attributes][:name]).to be_a String
       expect(user[:data][:attributes][:email]).to be_a String
+    end
+  end 
+  describe '#get_user_plants/1' do
+    it 'returns a json of a user plants' do
+      response = File.read('spec/fixtures/plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/plants')
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
+      plants = service.get_user_plants(1)
+      plant = plants[:data].first
+      expect(plants).to be_a Hash
+      expect(plants[:data]).to be_a Array
+      expect(plant).to have_key(:id)
+      expect(plant[:id]).to be_a(String)
+      expect(plant).to have_key(:type)
+      expect(plant[:type]).to eq('plant')
+      expect(plant).to have_key(:attributes)
+      expect(plant[:attributes]).to be_a(Hash)
+      expect(plant[:attributes][:name]).to be_a(String)
+      expect(plant[:attributes][:frost_date]).to be_a(Integer)
+      expect(plant[:attributes][:maturity]).to be_a(Integer)
     end
   end
 end

@@ -25,6 +25,12 @@ class GardenFacade
     User.new(service.get_user(id)[:data])
   end
 
+  def plants(id)
+    service.get_user_plants(id)[:data].map do |data|
+      Plant.new(data)
+    end
+  end
+
   def service
     GardenService.new
   end
