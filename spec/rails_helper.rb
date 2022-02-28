@@ -72,8 +72,8 @@ RSpec.configure do |config|
     :provider => "google_oauth2",
     :uid => "123456789",
     :info => {
-      :name => "Tony Stark",
-      :email => "tony@stark.com"
+      :name => "Raccoon22",
+      :email => "happy22@example.com"
     },
     :credentials => {
       :token => "token",

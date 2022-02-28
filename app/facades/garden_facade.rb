@@ -1,9 +1,18 @@
 class GardenFacade
-  
+
   def find_user_by_email(email)
-    User.new(service.get_email(email)[:data])  
+    response = service.get_email(email)
+    if response[:message].present?
+      nil
+    else
+      User.new(response[:data])
+    end
   end
-  
+
+  def create_user(email, name)
+    User.new(service.create_user(email, name)[:data])
+  end
+
   def frost_dates(id)
     service.get_frost_dates(id).map { |data| FrostDate.new(data) }
   end
