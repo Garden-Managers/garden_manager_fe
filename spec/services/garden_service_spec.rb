@@ -54,8 +54,8 @@ RSpec.describe GardenService do
       user = service.get_user(1)
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
-      expect(user[:data]).to have_key(:id)
-      expect(user[:data][:id]).to be_a String
+      expect(user[:data]).to have_key(:user_id)
+      expect(user[:data][:user_id]).to be_a String
     end
   end
   describe '#create_user' do
