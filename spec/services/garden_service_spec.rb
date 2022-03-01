@@ -32,15 +32,15 @@ RSpec.describe GardenService do
                    })
       forecast = service.get_forecast(1)
       expect(forecast).to be_a Hash
-      expect(forecast[:daily].first).to be_a Hash
-      expect(forecast[:daily].first).to have_key(:weather)
-      expect(forecast[:daily].first).to have_key(:dt)
-      expect(forecast[:daily].first).to have_key(:min)
-      expect(forecast[:daily].first).to have_key(:max)
-      expect(forecast[:daily].first[:dt]).to be_a String
-      expect(forecast[:daily].first[:min]).to be_a Float
-      expect(forecast[:daily].first[:max]).to be_a Float
-      expect(forecast[:daily].first[:weather]).to be_a String
+      expect(forecast[:attributes][:weekly_forecast].first).to be_a Hash
+      expect(forecast[:attributes][:weekly_forecast].first).to have_key(:weather)
+      expect(forecast[:attributes][:weekly_forecast].first).to have_key(:dt)
+      expect(forecast[:attributes][:weekly_forecast].first).to have_key(:min)
+      expect(forecast[:attributes][:weekly_forecast].first).to have_key(:max)
+      expect(forecast[:attributes][:weekly_forecast].first[:dt]).to be_a String
+      expect(forecast[:attributes][:weekly_forecast].first[:min]).to be_a Float
+      expect(forecast[:attributes][:weekly_forecast].first[:max]).to be_a Float
+      expect(forecast[:attributes][:weekly_forecast].first[:weather]).to be_a String
     end
   end
   describe '#get_user/1' do

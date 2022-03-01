@@ -32,9 +32,9 @@ RSpec.describe 'Users Dashboard' do
     visit '/dashboard'
     within '.weather' do
       expect(page).to have_content('Weather Forecast')
-      expect(page).to have_content('Low: 0.77° F')
-      expect(page).to have_content('High: 24.6° F')
-      expect(page).to have_content('Weather: snow')
+      expect(page).to have_content('Low: 33.57° F')
+      expect(page).to have_content('High: 56.16° F')
+      expect(page).to have_content('Weather: Clear')
     end
   end
   it 'has a users frost dates and hardiness_zone' do

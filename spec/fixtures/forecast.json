@@ -1,62 +1,53 @@
 {
-    "daily":
-[
-        {
-            "dt": "Sat, 26 Feb 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "snow"
-
-         },
-
-        {
-            "dt": "Sun, 27 Feb 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "rain"
-
-         },
-
-        {
-            "dt": "Mon, 28 Feb 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "snow"
-
-         },
-
-        {
-            "dt": "Tue, 1 Mar 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "clear"
-
-         },
-
-        {
-            "dt": "Wed, 2 Mar 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "clear"
-
-         },
-
-        {
-            "dt": "Thur, 3 Mar 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "clear"
-
-         },
-
-        {
-            "dt": "Fri, 4 Mar 2022 19:00:00 +0000",
-                "min": 0.77,
-                "max": 24.6,
-            "weather": "clear"
-
-         }
-
-]
-
+    "attributes": {
+        "current_day": {
+            "min": 29.62,
+            "max": 53.69,
+            "weather": "Clear"
+        },
+        "weekly_forecast": [
+            {
+                "dt": "2022-03-01",
+                "min": 33.57,
+                "max": 56.16,
+                "weather": "Clear"
+            },
+            {
+                "dt": "2022-03-02",
+                "min": 36.77,
+                "max": 58.91,
+                "weather": "Clear"
+            },
+            {
+                "dt": "2022-03-03",
+                "min": 38.37,
+                "max": 59.02,
+                "weather": "Clouds"
+            },
+            {
+                "dt": "2022-03-04",
+                "min": 37.85,
+                "max": 54.75,
+                "weather": "Clouds"
+            },
+            {
+                "dt": "2022-03-05",
+                "min": 22.19,
+                "max": 40.14,
+                "weather": "Snow"
+            },
+            {
+                "dt": "2022-03-06",
+                "min": 15.91,
+                "max": 22.55,
+                "weather": "Snow"
+            },
+            {
+                "dt": "2022-03-07",
+                "min": 13.71,
+                "max": 35.55,
+                "weather": "Clear"
+            }
+        ]
+    }
 }
