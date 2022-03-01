@@ -33,3 +33,7 @@ Plant attribute needs:
   - Maturity(in days)
   - Picture of plant
   -
+_---------------------------------------------------------------------------
+  def current_user
+      @user = User.find(session[:user_id]) if session[:user_id]
+    end

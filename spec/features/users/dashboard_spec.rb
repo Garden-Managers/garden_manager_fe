@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users Dashboard' do
-  let(:user) { User.new({ user_id: '1', attributes: { hardiness_zone: '10b' } }) }
+  let(:user) { User.new({ id: '1', attributes: { name: "Raccoon22", email: "happy22@example.com", zip: "81007" } }) }
   it 'has a seven day forecast' do
     response = File.read('spec/fixtures/user.json')
     stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1')
@@ -32,9 +32,9 @@ RSpec.describe 'Users Dashboard' do
     visit '/dashboard'
     within '.weather' do
       expect(page).to have_content('Weather Forecast')
-      expect(page).to have_content('Low: 0.77° F')
-      expect(page).to have_content('High: 24.6° F')
-      expect(page).to have_content('Weather: snow')
+      expect(page).to have_content('Low: 33.57° F')
+      expect(page).to have_content('High: 56.16° F')
+      expect(page).to have_content('Weather: Clear')
     end
   end
   it 'has a users frost dates and hardiness_zone' do

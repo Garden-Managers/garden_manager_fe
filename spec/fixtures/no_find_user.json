@@ -1,0 +1,5 @@
+{
+    "message": "User not found",
+    "code": 404,
+    "status": "NOT FOUND"
+}
