@@ -16,4 +16,10 @@ class SessionsController < ApplicationController
       redirect_to "/dashboard", notice: "Welcome #{user.name}!"
     end
   end
+
+  def destroy
+    # require "pry"; binding.pry
+    session.destroy
+    redirect_to root_path, notice: "You have been successfully logged out!"
+  end
 end

@@ -1,1 +1,8 @@
 <h1>Welcome to The Garden Manager!</h1>
+
+<% if !current_user %>
+  <%= link_to 'Login', '/auth/google_oauth2' %>
+  <%= link_to 'Sign Up', '/auth/google_oauth2' %>
+<% else %>
+  <%= link_to 'Return to Dashboard', '/dashboard' %>
+<% end %>
