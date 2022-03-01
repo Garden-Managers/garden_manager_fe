@@ -1,9 +1,9 @@
 class User
-  attr_reader :user_id, :zip, :latitude, :longitude
+  attr_reader :user_id, :zip, :latitude, :longitude, :name
 
   def initialize(data)
-    require "pry"; binding.pry
     @user_id = data[:id]
+    @name = data[:attributes][:name]
     @zip = data[:attributes][:zip]
     @latitude = data[:attributes][:latitude]
     @longitude = data[:attributes][:longitude]

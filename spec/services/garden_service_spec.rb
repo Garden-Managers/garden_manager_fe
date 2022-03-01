@@ -54,10 +54,8 @@ RSpec.describe GardenService do
       user = service.get_user(1)
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
-      expect(user[:data]).to have_key(:user_id)
-      expect(user[:data][:attributes]).to have_key(:hardiness_zone)
-      expect(user[:data][:user_id]).to be_a String
-      expect(user[:data][:attributes][:hardiness_zone]).to be_a String
+      expect(user[:data]).to have_key(:id)
+      expect(user[:data][:id]).to be_a String
     end
   end
   describe '#create_user' do
@@ -75,7 +73,7 @@ RSpec.describe GardenService do
       expect(user[:data][:attributes][:name]).to be_a String
       expect(user[:data][:attributes][:email]).to be_a String
     end
-  end 
+  end
   describe '#get_user_plants/1' do
     it 'returns a json of a user plants' do
       response = File.read('spec/fixtures/plants.json')
