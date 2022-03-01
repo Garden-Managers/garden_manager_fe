@@ -4,7 +4,7 @@ class GardenFacade
   end
 
   def forecast(id)
-    service.get_forecast(id)[:daily].map { |data| Forecast.new(data) }
+    service.get_forecast(id)[:attributes][:weekly_forecast].map { |data| Forecast.new(data) }
   end
 
   def find_user(id)
