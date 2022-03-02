@@ -1,5 +1,4 @@
 class GardenFacade
-
   def find_user_by_email(email)
     response = service.get_email(email)
     if response[:message].present?
@@ -29,6 +28,10 @@ class GardenFacade
     service.get_user_plants(id)[:data].map do |data|
       Plant.new(data)
     end
+  end
+
+  def update_user(zip)
+    User.new(service.update_user(zip)[:data])
   end
 
   def service

@@ -61,12 +61,12 @@ RSpec.describe GardenService do
   describe '#create_user' do
     it 'returns a json of a new user' do
       response = File.read('spec/fixtures/create_user.json')
-      stub_request(:post, "https://ancient-basin-82077.herokuapp.com/api/v1/users?email=happy22@example.com&name=Raccoon22")
-      .to_return({
-                   status: 200,
-                   body: response
-                 })
-      user = service.create_user("happy22@example.com", "Raccoon22")
+      stub_request(:post, 'https://ancient-basin-82077.herokuapp.com/api/v1/users?email=happy22@example.com&name=Raccoon22')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      user = service.create_user('happy22@example.com', 'Raccoon22')
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
       expect(user[:data][:id]).to be_a String
@@ -74,14 +74,33 @@ RSpec.describe GardenService do
       expect(user[:data][:attributes][:email]).to be_a String
     end
   end
+  describe '#update_user' do
+    it 'returns a json of a updated user' do
+      response = File.read('spec/fixtures/update_user.json')
+      stub_request(:patch, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1?zip=80223')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      user = service.update_user('80223')
+      expect(user).to be_a Hash
+      expect(user[:data]).to be_a Hash
+      expect(user[:data][:id]).to be_a String
+      expect(user[:data][:attributes][:name]).to be_a String
+      expect(user[:data][:attributes][:email]).to be_a String
+      expect(user[:data][:attributes][:zip]).to be_a String
+      expect(user[:data][:attributes][:longitude]).to be_a String
+      expect(user[:data][:attributes][:latitude]).to be_a String
+    end
+  end
   describe '#get_user_plants/1' do
     it 'returns a json of a user plants' do
       response = File.read('spec/fixtures/plants.json')
       stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/plants')
-      .to_return({
-                   status: 200,
-                   body: response
-                 })
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
       plants = service.get_user_plants(1)
       plant = plants[:data].first
       expect(plants).to be_a Hash

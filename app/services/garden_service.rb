@@ -1,15 +1,22 @@
 class GardenService
-
   def get_email(email)
     get_url("/api/v1/user?email=#{email}")
   end
 
   def create_user(email, name)
-    conn = Faraday.new("https://ancient-basin-82077.herokuapp.com") do |faraday|
+    conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
       faraday.params[:email] = email
       faraday.params[:name] = name
     end
-    response = conn.post("/api/v1/users")
+    response = conn.post('/api/v1/users')
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def update_user(zip)
+    conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
+      faraday.params[:zip] = zip
+    end
+    response = conn.patch('/api/v1/users/1')
     json = JSON.parse(response.body, symbolize_names: true)
   end
 

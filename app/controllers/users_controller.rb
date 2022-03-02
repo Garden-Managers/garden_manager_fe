@@ -6,6 +6,14 @@ class UsersController < ApplicationController
       @plants = GardenFacade.new.plants(current_user.user_id)
     else
       @plants = GardenFacade.new.plants(current_user.user_id)
-    end 
+    end
+  end
+
+  def update
+    GardenFacade.new.update_user(params[:zip])
+    redirect_to dashboard_path,
+                flash: {
+                  success: 'Zip has been added you can now get your forecast and frost dates!'
+                }
   end
 end
