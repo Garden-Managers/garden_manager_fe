@@ -6,7 +6,9 @@
       <dt>Plant: <%= link_to plant.name, "/plants/#{plant.id}", method: :get %></dt>
     <dd>Frost Date: <%= plant.frost_date%></dd>
     <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
-    <%= button_to 'Add Plant!', '/plants', method: :post %>
+    <div class="plant-<%=plant.id%>">
+      <%= button_to 'Add Plant!', "/users/#{current_user.user_id}/plants", method: :post, params: {plant_id: plant.id, user_id: current_user.user_id} %>
+    </div>
     </div>
   <% end %>
   </dl>
