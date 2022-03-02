@@ -1,43 +1,73 @@
-
-<div class='weather'>
+<div class="container-fluid bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class ="mx-auto">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active link-success fs-2" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-2" href="/logout">Weather Forecast</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-2" href="/logout">Planting Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-2" href="/logout">My Plants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-2" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class="container-fluid bg-dark">
   <% if current_user.zip%>
-  <ul>
-    <h2>Weather Forecast</h2>
-  <% @forecast.each do |forecast| %>
-   <p ><%= forecast.date %></p>
-    <li>Weather: <%= forecast.weather %></li>
-    <li>High: <%= forecast.high %>&deg; F</li>
-    <li>Low: <%= forecast.low %>&deg; F</li>
-  <% end %>
-  </ul>
-  </div>
-  <div class='frost-dates'>
-    <p>Fall frost date: <%= Date::MONTHNAMES[@fall.date[0..1].to_i] %> <%= @fall.date[2..3] %>, temperature <%= @fall.temperature_threshold %>&deg; F</p>
-    <p>Spring frost date: <%= Date::MONTHNAMES[@spring.date[0..1].to_i] %> <%= @spring.date[2..3] %>, temperature <%= @spring.temperature_threshold %>&deg; F</p>
-  </div>
+    <section id="weather">
+      <div class="card-group">
+        <h4>7-Day Weather Forecast</h4>
+        <% @forecast.each do |forecast| %>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= forecast.date_format %></h5>
+              <p class="card-text">
+                Weather: <%= forecast.weather %>
+                High: <%= forecast.high %>&deg; F
+                Low: <%= forecast.low %>&deg; F
+                <a href="#" class="btn btn-primary">See details</a>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+    <div class='frost-dates'>
+      <p>Fall frost date: <%= Date::MONTHNAMES[@fall.date[0..1].to_i] %> <%= @fall.date[2..3] %>, temperature <%= @fall.temperature_threshold %>&deg; F</p>
+      <p>Spring frost date: <%= Date::MONTHNAMES[@spring.date[0..1].to_i] %> <%= @spring.date[2..3] %>, temperature <%= @spring.temperature_threshold %>&deg; F</p>
+    </div>
 
-  <div class='plants'>
-  <dl>
-    <h2>My Plants!</h2>
-  <% @plants.each do |plant| %>
-    <div class='plant-count'>
-   <dt>Plant: <%= plant.name %></dt>
-    <dd>Frost Date: <%= plant.frost_date%></dd>
-    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
+    <div class='plants'>
+    <dl>
+      <h2>My Plants!</h2>
+    <% @plants.each do |plant| %>
+      <div class='plant-count'>
+     <dt>Plant: <%= plant.name %></dt>
+      <dd>Frost Date: <%= plant.frost_date%></dd>
+      <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
+      </div>
+    <% end %>
+  <% else %>
+    <div class='plants'>
+    <dl>
+      <h2>My Plants</h2>
+    <% @plants.each do |plant| %>
+      <div class='plant-count'>
+     <dt>Plant: <%= plant.name %></dt>
+      <dd>Frost Date: <%= plant.frost_date%></dd>
+      <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
+      </div>
+    <% end %>
+    </dl>
     </div>
   <% end %>
-<% else %>
-  <div class='plants'>
-  <dl>
-    <h2>My Plants!</h2>
-  <% @plants.each do |plant| %>
-    <div class='plant-count'>
-   <dt>Plant: <%= plant.name %></dt>
-    <dd>Frost Date: <%= plant.frost_date%></dd>
-    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
-    </div>
-  <% end %>
-
-  </dl>
-  </div>
-<% end %>
+</div>
