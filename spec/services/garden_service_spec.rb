@@ -5,7 +5,7 @@ RSpec.describe GardenService do
   describe '#get_frost_dates/1' do
     it 'returns a list of json frost dates' do
       response = File.read('spec/fixtures/frost_dates.json')
-      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/frostDates')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/frost_dates')
         .to_return({
                      status: 200,
                      body: response
@@ -16,10 +16,10 @@ RSpec.describe GardenService do
       expect(frost.last).to be_a Hash
       expect(frost.first).to have_key(:season)
       expect(frost.first).to have_key(:temperature_threshold)
-      expect(frost.first).to have_key(:prob_90)
+      expect(frost.first).to have_key(:prob_50)
       expect(frost.first[:season]).to be_a String
       expect(frost.first[:temperature_threshold]).to be_a String
-      expect(frost.first[:prob_90]).to be_a String
+      expect(frost.first[:prob_50]).to be_a String
     end
   end
   describe '#get_forecast/1' do

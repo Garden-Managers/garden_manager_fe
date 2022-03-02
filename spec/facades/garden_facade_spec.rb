@@ -5,7 +5,7 @@ RSpec.describe GardenFacade do
   describe '#frost_dates' do
     it '#returns a frost date poros/1' do
       response = File.read('spec/fixtures/frost_dates.json')
-      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/frostDates')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/frost_dates')
         .to_return({
                      status: 200,
                      body: response

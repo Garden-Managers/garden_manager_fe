@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    GardenFacade.new.update_user(params[:zip])
+    user = GardenFacade.new.update_user(params[:zip])
+    session[:user_id] = nil
+    session[:user_id] = user.user_id
     redirect_to dashboard_path,
                 flash: {
                   success: 'Zip has been added you can now get your forecast and frost dates!'

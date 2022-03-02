@@ -1,6 +1,5 @@
-
 <div class='weather'>
-  <% if current_user.zip%>
+  <% if current_user.zip.present?%>
   <ul>
     <h2>Weather Forecast</h2>
   <% @forecast.each do |forecast| %>
