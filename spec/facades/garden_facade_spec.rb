@@ -66,4 +66,30 @@ RSpec.describe GardenFacade do
       expect(user).to be_a User
     end
   end
+  describe '#all_plants' do
+    it 'returns all Plant Poros' do
+      response = File.read('spec/fixtures/plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+
+      facade.all_plants.each do |plant|
+        expect(plant).to be_a Plant
+      end
+    end
+  end
+  describe '#add_plant' do
+    it 'returns a plant poro' do
+      response = File.read('spec/fixtures/create_plant.json')
+      stub_request(:post, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants?frost_date=12&maturity=100&name=asparagus')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      plant = facade.add_plant({ name: 'asparagus', frost_date: '12', maturity: '100' })
+      expect(plant).to be_a Plant
+    end
+  end
 end

@@ -12,11 +12,30 @@ class GardenService
     json = JSON.parse(response.body, symbolize_names: true)
   end
 
+  def create_user_plant(user_id, plant_id)
+    conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
+      faraday.params[:user_id] = user_id
+      faraday.params[:plant_id] = plant_id
+    end
+    response = conn.post('/api/v1/user_plants')
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
   def update_user(zip)
     conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
       faraday.params[:zip] = zip
     end
     response = conn.patch('/api/v1/users/1')
+    json = JSON.parse(response.body, symbolize_names: true)
+  end
+
+  def create_plant(name, frost_date, maturity)
+    conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
+      faraday.params[:maturity] = maturity
+      faraday.params[:name] = name
+      faraday.params[:frost_date] = frost_date
+    end
+    response = conn.post('/api/v1/plants')
     json = JSON.parse(response.body, symbolize_names: true)
   end
 
@@ -34,6 +53,10 @@ class GardenService
 
   def get_user_plants(id)
     get_url("api/v1/users/#{id}/plants")
+  end
+
+  def all_plants
+    get_url('/api/v1/plants')
   end
 
   def get_url(url, query = nil)

@@ -135,6 +135,12 @@ RSpec.describe 'Users Dashboard' do
                      status: 200,
                      body: response
                    })
+      response = File.read('spec/fixtures/plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
       allow_any_instance_of(ApplicationController)
         .to receive(:current_user).and_return(user)
       visit '/dashboard'

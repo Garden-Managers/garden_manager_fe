@@ -30,6 +30,16 @@ class GardenFacade
     end
   end
 
+  def add_plant(plant)
+    Plant.new(service.create_plant(plant[:name], plant[:frost_date], plant[:maturity])[:data])
+  end
+
+  def all_plants
+    service.all_plants[:data].map do |data|
+      Plant.new(data)
+    end
+  end
+
   def update_user(zip)
     User.new(service.update_user(zip)[:data])
   end

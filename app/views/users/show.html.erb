@@ -19,7 +19,7 @@
   <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
     <%= f.label :zip %>
     <%= f.text_field :zip %>
-    <%= f.submit 'Submit'%>
+    <%= f.submit "Submit" %>
   <% end %>
 
 <% end %>

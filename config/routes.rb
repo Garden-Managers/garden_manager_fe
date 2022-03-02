@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   patch '/users/:id', to: 'users#update'
-  resources :plants, only: [:index]
+  resources :plants, only: %i[create index show]
 end
