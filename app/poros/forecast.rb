@@ -7,4 +7,8 @@ class Forecast
     @high = data[:max]
     @weather = data[:weather]
   end
+
+  def date_format
+    @date.to_date.strftime("%A %b %-d")
+  end
 end
