@@ -1,4 +1,5 @@
 class PlantsController < ApplicationController
+  before_action :require_user, only: %i[index show]
   def index
     @plants = if params[:search].present?
                 GardenFacade.search_plants(params[:search])

@@ -147,4 +147,12 @@ RSpec.describe 'Plants Index' do
       expect(current_path).to eq(plant_path(42))
     end
   end
+
+  describe 'when not a user' do
+    it 'returns the visitor to the root path' do
+      visit plants_path
+
+      expect(current_path).to eq(root_path)
+    end
+  end
 end

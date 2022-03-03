@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_user, only: %i[show update]
   def show
     if current_user.zip
       @forecast = GardenFacade.forecast(current_user.user_id)
