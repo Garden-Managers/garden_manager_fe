@@ -178,4 +178,48 @@ RSpec.describe GardenService do
       expect(user_plant[:data][:relationships][:plant]).to be_a(Hash)
     end
   end
+  describe '#search_plants/1' do
+    it 'returns a json of a new user plant' do
+      response = File.read('spec/fixtures/search_plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants/find?q=asparagus')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      plants = GardenService.search_plants('asparagus')
+      plant = plants[:data][0]
+      expect(plants).to be_a Hash
+      expect(plant[:attributes]).to have_key(:name)
+      expect(plant[:attributes][:name]).to be_a(String)
+      expect(plant).to have_key(:type)
+      expect(plant[:type]).to eq('plant')
+      expect(plant[:attributes]).to have_key(:frost_date)
+      expect(plant[:attributes][:frost_date]).to be_a(Integer)
+      expect(plant[:attributes]).to have_key(:maturity)
+      expect(plant[:attributes][:maturity]).to be_a(Integer)
+    end
+  end
+  describe '#get_plant/1' do
+    it 'returns a json of a new user plant' do
+      response = File.read('spec/fixtures/plant.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants/42')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      plant = GardenService.get_plant('42')
+      expect(plant).to be_a Hash
+      expect(plant[:data]).to be_a(Hash)
+      expect(plant[:data]).to have_key(:id)
+      expect(plant[:data][:id]).to be_a(String)
+      expect(plant[:data]).to have_key(:attributes)
+      expect(plant[:data][:attributes]).to be_a(Hash)
+      expect(plant[:data][:attributes]).to have_key(:maturity)
+      expect(plant[:data][:attributes][:maturity]).to be_a(Integer)
+      expect(plant[:data][:attributes]).to have_key(:frost_date)
+      expect(plant[:data][:attributes][:frost_date]).to be_a(Integer)
+      expect(plant[:data][:attributes]).to have_key(:name)
+      expect(plant[:data][:attributes][:name]).to be_a(String)
+    end
+  end
 end

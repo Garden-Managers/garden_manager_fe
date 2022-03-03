@@ -47,7 +47,7 @@ RSpec.describe 'Plants Index' do
     within '.plants' do
       expect(page).to have_content('Plant: Tomato')
       expect(page).to have_content('Frost Date: 7')
-      expect(page).to have_content('Maturity: 72°')
+      expect(page).to have_content('Maturity: 72')
       expect(page).to have_css('.plant-count', count: 40)
       expect(page).to have_link('Tomato')
       expect(page).to have_button('Add Plant!', count: 40)
@@ -93,6 +93,58 @@ RSpec.describe 'Plants Index' do
     end
     within '.success' do
       expect(page).to have_content('asparagus successfully added!')
+    end
+  end
+  it 'has a search form to look up plants and a link to the plants show page' do
+    response = File.read('spec/fixtures/plants.json')
+    stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants')
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
+    response = File.read('spec/fixtures/create_plant.json')
+    stub_request(:post, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants?frost_date=12&maturity=100&name=asparagus')
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
+    response = File.read('spec/fixtures/create_user_plant.json')
+    stub_request(:post, 'https://ancient-basin-82077.herokuapp.com/api/v1/user_plants?plant_id=42&user_id=1')
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
+    response = File.read('spec/fixtures/search_plants.json')
+    stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants/find?q=asparagus')
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
+    response = File.read('spec/fixtures/plant.json')
+    stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants/42')
+      .to_return({
+                   status: 200,
+                   body: response
+                 })
+
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(user)
+    visit plants_path
+    within '.form-inline' do
+      fill_in :search, with: 'asparagus'
+
+      click_on 'Search!'
+      expect(current_path).to eq(plants_path)
+    end
+    within '.plants' do
+      expect(page).to have_content('Plant: asparagus')
+      expect(page).to have_content('Frost Date: 100')
+      expect(page).to have_content('Maturity: 12')
+      expect(page).to have_css('.plant-count', count: 1)
+
+      click_link 'asparagus'
+
+      expect(current_path).to eq(plant_path(42))
     end
   end
 end
