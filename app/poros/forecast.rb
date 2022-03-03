@@ -9,6 +9,6 @@ class Forecast
   end
 
   def date_format
-    @date.to_date.strftime("%A %b %-d")
+    @date.to_date.strftime("%a %b %-d")
   end
 end
