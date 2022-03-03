@@ -1,0 +1,20 @@
+{
+    "data": {
+        "id": "1",
+        "type": "user_plant",
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": "1",
+                    "type": "user"
+                }
+            },
+            "plant": {
+                "data": {
+                    "id": "1",
+                    "type": "plant"
+                }
+            }
+        }
+    }
+}

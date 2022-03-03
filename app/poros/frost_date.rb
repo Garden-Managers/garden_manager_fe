@@ -4,6 +4,6 @@ class FrostDate
   def initialize(data)
     @season = data[:season]
     @temperature_threshold = data[:temperature_threshold]
-    @date = data[:prob_90]
+    @date = data[:prob_50]
   end
 end

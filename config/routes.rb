@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show'
   get '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  patch '/users/:id', to: 'users#update'
+  resources :plants, only: %i[create index show]
+  resources :users, only: %i[update] do
+    resources :plants, only: %i[create], controller: :user_plants
+  end
 end

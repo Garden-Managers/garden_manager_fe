@@ -1,6 +1,5 @@
-
 <div class='weather'>
-  <% if current_user.zip%>
+  <% if current_user.zip.present?%>
   <ul>
     <h2>Weather Forecast</h2>
   <% @forecast.each do |forecast| %>
@@ -15,18 +14,15 @@
     <p>Fall frost date: <%= Date::MONTHNAMES[@fall.date[0..1].to_i] %> <%= @fall.date[2..3] %>, temperature <%= @fall.temperature_threshold %>&deg; F</p>
     <p>Spring frost date: <%= Date::MONTHNAMES[@spring.date[0..1].to_i] %> <%= @spring.date[2..3] %>, temperature <%= @spring.temperature_threshold %>&deg; F</p>
   </div>
-
-  <div class='plants'>
-  <dl>
-    <h2>My Plants!</h2>
-  <% @plants.each do |plant| %>
-    <div class='plant-count'>
-   <dt>Plant: <%= plant.name %></dt>
-    <dd>Frost Date: <%= plant.frost_date%></dd>
-    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
-    </div>
-  <% end %>
 <% else %>
+  <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
+    <%= f.label :zip %>
+    <%= f.text_field :zip %>
+    <%= f.submit "Submit" %>
+  <% end %>
+
+<% end %>
+
   <div class='plants'>
   <dl>
     <h2>My Plants!</h2>
@@ -37,7 +33,6 @@
     <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
     </div>
   <% end %>
-
   </dl>
+  <%= link_to "Explore Plants", plants_path, method: :get %>
   </div>
-<% end %>

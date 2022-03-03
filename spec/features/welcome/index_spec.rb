@@ -15,5 +15,5 @@ RSpec.describe 'Landing Page' do
 
   it 'has a link to register new user' do
     expect(page).to have_link('Sign Up')
-  end  
+  end
 end

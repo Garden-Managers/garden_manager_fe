@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe FrostDate do
-  let(:frost) { FrostDate.new({ season: 'fall', temperature_threshold: '36', prob_90: '0531' }) }
+  let(:frost) { FrostDate.new({ season: 'fall', temperature_threshold: '36', prob_50: '0531' }) }
   describe 'initialize' do
     it 'exists' do
       actual = frost
