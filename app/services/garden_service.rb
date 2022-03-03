@@ -1,8 +1,7 @@
 class GardenService
 
   def self.get_user_by_email(email)
-    response = Faraday.get("https://ancient-basin-82077.herokuapp.com/api/v1/user?email=#{email}")
-    parsed = JSON.parse(response.body, symbolize_names: true)
+    get_url("user?email=#{email}")
   end
 
   def self.create_user(email, name)
@@ -15,23 +14,23 @@ class GardenService
   end
 
   def self.get_frost_dates(user_id)
-    get_url("/#{user_id}/frostDates")
+    get_url("users/#{user_id}/frostDates")
   end
 
   def self.get_forecast(user_id)
-    get_url("/#{user_id}/forecast")
+    get_url("users/#{user_id}/forecast")
   end
 
   def self.get_user(user_id)
-    get_url("/#{user_id}")
+    get_url("users/#{user_id}")
   end
 
   def self.get_user_plants(user_id)
-    get_url("/#{user_id}/plants")
+    get_url("users/#{user_id}/plants")
   end
 
   def self.get_url(url)
-    response = Faraday.get("https://ancient-basin-82077.herokuapp.com/api/v1/users#{url}")
+    response = Faraday.get("https://ancient-basin-82077.herokuapp.com/api/v1/#{url}")
     parsed = JSON.parse(response.body, symbolize_names: true)
   end
 end
