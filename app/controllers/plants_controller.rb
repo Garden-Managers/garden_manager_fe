@@ -16,6 +16,7 @@ class PlantsController < ApplicationController
   def create
     plant = GardenFacade.add_plant(plant_params)
     if plant
+      binding.pry
       GardenService.create_user_plant(current_user.user_id, plant.id)
       redirect_to plants_path, flash: { success: "#{plant.name} successfully added!" }
     else
