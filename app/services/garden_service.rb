@@ -3,7 +3,7 @@ class GardenService
     get_url("/api/v1/user?email=#{email}")
   end
 
-  def self.create_user(email, name)
+  def create_user(email, name)
     conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
       faraday.params[:email] = email
       faraday.params[:name] = name
@@ -72,8 +72,16 @@ class GardenService
     get_url('plants')
   end
 
+  def self.search_plants(plant)
+    get_url("plants/find?q=#{plant}")
+  end
+
+  def self.get_plant(id)
+    get_url("plants/#{id}")
+  end
+
   def self.get_url(url)
     response = Faraday.get("https://ancient-basin-82077.herokuapp.com/api/v1/#{url}")
-    parsed = JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(response.body, symbolize_names: true)
   end
 end

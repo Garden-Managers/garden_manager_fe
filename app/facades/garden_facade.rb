@@ -30,12 +30,22 @@ class GardenFacade
     end
   end
 
+  def self.plant(id)
+    Plant.new(GardenService.get_plant(id)[:data])
+  end
+
   def self.add_plant(plant)
     Plant.new(GardenService.create_plant(plant[:name], plant[:frost_date], plant[:maturity])[:data])
   end
 
   def self.all_plants
     GardenService.all_plants[:data].map do |data|
+      Plant.new(data)
+    end
+  end
+
+  def self.search_plants(plant)
+    GardenService.search_plants(plant)[:data].map do |data|
       Plant.new(data)
     end
   end
