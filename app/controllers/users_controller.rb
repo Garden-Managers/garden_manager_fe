@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     session[:user_id] = user.user_id
     redirect_to dashboard_path,
                 flash: {
-                  success: 'Zip has been added you can now get your forecast and frost dates!'
+                  success: 'Success! You can now see your local weather and planting data.'
                 }
   end
 end

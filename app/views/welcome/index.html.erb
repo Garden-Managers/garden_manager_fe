@@ -31,5 +31,10 @@
   </nav>
 </div>
 <div class="container-fluid bg-dark">
+  <% flash.each do |name, msg|%>
+    <div class="alert alert-success" role="alert">
+      <%= content_tag :div, msg, class: name %>
+    </div>
+  <% end %>
   <img src="https://user-images.githubusercontent.com/88950699/156293604-09ee5c8e-f090-45ee-84b7-3c085fb4f740.jpg" class="img-fluid rounded mx-auto d-block" alt="Garden Manager">
 </div>
