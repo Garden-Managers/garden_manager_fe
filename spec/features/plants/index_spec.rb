@@ -44,15 +44,15 @@ RSpec.describe 'Plants Index' do
       .to receive(:current_user).and_return(user)
     visit plants_path
 
-    within '#plants' do
-      expect(page).to have_content('Plant: Tomato')
-      expect(page).to have_content('Frost Date: 7')
-      expect(page).to have_content('Maturity: 72')
-      expect(page).to have_css('.plant-count', count: 40)
+    within '#plant-list' do
+      expect(page).to have_content('Tomato')
+      expect(page).to have_content('Safe planting time from frost date: 7')
+      expect(page).to have_content('Days to maturity: 72')
+      expect(page).to have_css('#plant-count', count: 40)
       expect(page).to have_link('Tomato')
-      expect(page).to have_button('Add Plant!', count: 40)
-      within '.plant-1' do
-        click_button 'Add Plant!'
+      expect(page).to have_button('Add to my plants', count: 40)
+      within '#plant-1' do
+        click_button 'Add to my plants'
         expect(current_path).to eq(dashboard_path)
       end
     end
@@ -82,12 +82,12 @@ RSpec.describe 'Plants Index' do
       .to receive(:current_user).and_return(user)
     visit plants_path
 
-    within '.add-plant-form' do
+    within '#plant-new' do
       fill_in :name, with: 'asparagus'
       fill_in :maturity, with: '100'
       fill_in :frost_date, with: '12'
 
-      click_on 'Add Plant'
+      click_on 'Add plant!'
     end
     expect(page).to have_content('asparagus successfully added!')
   end
@@ -132,11 +132,11 @@ RSpec.describe 'Plants Index' do
       click_on 'Search!'
       expect(current_path).to eq(plants_path)
     end
-    within '#plants' do
-      expect(page).to have_content('Plant: asparagus')
-      expect(page).to have_content('Frost Date: 100')
-      expect(page).to have_content('Maturity: 12')
-      expect(page).to have_css('.plant-count', count: 1)
+    within '#plant-list' do
+      expect(page).to have_content('asparagus')
+      expect(page).to have_content('Safe planting time from frost date: 100')
+      expect(page).to have_content('Days to maturity: 12')
+      expect(page).to have_css('#plant-count', count: 1)
 
       click_link 'asparagus'
 
