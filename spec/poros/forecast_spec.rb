@@ -26,7 +26,6 @@ RSpec.describe Forecast do
       expected = 24.6
       expect(actual).to eq(expected)
     end
-
     it 'has a weather' do
       actual = forecast.weather
       expected = 'snow'
