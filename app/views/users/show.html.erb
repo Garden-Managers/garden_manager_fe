@@ -1,43 +1,114 @@
-
-<div class='weather'>
-  <% if current_user.zip%>
-  <ul>
-    <h2>Weather Forecast</h2>
-  <% @forecast.each do |forecast| %>
-   <p ><%= forecast.date %></p>
-    <li>Weather: <%= forecast.weather %></li>
-    <li>High: <%= forecast.high %>&deg; F</li>
-    <li>Low: <%= forecast.low %>&deg; F</li>
-  <% end %>
-  </ul>
-  </div>
-  <div class='frost-dates'>
-    <p>Fall frost date: <%= Date::MONTHNAMES[@fall.date[0..1].to_i] %> <%= @fall.date[2..3] %>, temperature <%= @fall.temperature_threshold %>&deg; F</p>
-    <p>Spring frost date: <%= Date::MONTHNAMES[@spring.date[0..1].to_i] %> <%= @spring.date[2..3] %>, temperature <%= @spring.temperature_threshold %>&deg; F</p>
-  </div>
-
-  <div class='plants'>
-  <dl>
-    <h2>My Plants!</h2>
-  <% @plants.each do |plant| %>
-    <div class='plant-count'>
-   <dt>Plant: <%= plant.name %></dt>
-    <dd>Frost Date: <%= plant.frost_date%></dd>
-    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
+<div class="container-fluid bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class ="mx-auto">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active link-success fs-3" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-3" href="/plants">Plant Library</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-3" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class="container-fluid bg-dark">
+  <% flash.each do |name, msg|%>
+    <div class="alert alert-success" role="alert">
+      <%= content_tag :div, msg, class: name %>
     </div>
   <% end %>
-<% else %>
-  <div class='plants'>
-  <dl>
-    <h2>My Plants!</h2>
-  <% @plants.each do |plant| %>
-    <div class='plant-count'>
-   <dt>Plant: <%= plant.name %></dt>
-    <dd>Frost Date: <%= plant.frost_date%></dd>
-    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
-    </div>
+  <% if current_user.zip.present?%>
+    <div class="container">
+      <div class="row g-0">
+        <div class="col-3">
+          <section id="weather">
+            <div class="container-fluid bg-dark">
+              <div class="grid">
+                <div class="badge bg-dark text-wrap" style="width: 10rem;">
+                  <h4>7-Day Forecast</h4>
+                </div>
+                <% @forecast.each do |forecast| %>
+                    <div>
+                      <div class="card" style="width: 10rem;">
+                        <h5 class="card-header"><%= forecast.date_format %></h5>
+                        <div class="card-body">
+                          <p class="card-text">
+                            Weather: <%= forecast.weather %><br>
+                            High: <%= forecast.high %>&deg; F<br>
+                            Low: <%= forecast.low %>&deg; F<br>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-9">
+          <section id="frost-dates">
+            <div class="card text-center border-dark">
+              <div class="card-header text-white bg-primary">
+                <h4>Local Frost Dates</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Fall frost date: <%= Date::MONTHNAMES[@fall.date[0..1].to_i] %> <%= @fall.date[2..3] %>, temperature <%= @fall.temperature_threshold %>&deg; F<br>
+                  Spring frost date: <%= Date::MONTHNAMES[@spring.date[0..1].to_i] %> <%= @spring.date[2..3] %>, temperature <%= @spring.temperature_threshold %>&deg; F
+                </p>
+              </div>
+            </div>
+          </section>
+          <section id="plants">
+            <div class="card text-center border-dark">
+              <div class="card-header text-white bg-success">
+                  <h4>My Plants</h4>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  <%= @plants.count %> plants in your collection<br><br>
+                  <a href="/plants" class="btn btn-success">Add a plant</a>
+                </p>
+              </div>
+            </div>
+            <% @plants.each do |plant| %>
+              <div class="card">
+                <div class="card-header">
+                  <%= plant.name %>
+                </div>
+                <div class="card-body">
+                  <p class="card-text">
+                    Safe planting time from frost date: <%= plant.frost_date%> days<br>
+                    Days to maturity: <%= plant.maturity%>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </section>
+        </div>
+      </div>
+  <% else %>
+    <section id="zip-form">
+      <div class="badge bg-dark">
+        <h4>Enter your zip code to generate your personalized dashboard: </h4>
+      </div>
+      <div class="container-fluid bg-dark">
+        <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
+          <%= f.label "zip code" %>
+          <%= f.text_field :zip %>
+          <%= f.submit "Submit" %>
+        <% end %>
+      </div>
+      <div class="container-fluid bg-dark">
+        <div class="card bg-dark border-dark">
+          <div class="card-body">
+          </div>
+        </div>
+        <img src="https://user-images.githubusercontent.com/88950699/156636405-7cdef4f0-73fb-4937-8a16-63f1d6352b97.jpg" class="img-fluid rounded mx-auto d-block" alt="Garden Manager Dashboard">
+    </section>
   <% end %>
-
-  </dl>
-  </div>
-<% end %>
+</div>

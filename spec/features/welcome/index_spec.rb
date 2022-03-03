@@ -1,13 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe 'Landing Page' do
-  it 'welcomes all visitors' do
-    visit "/"
-
-    expect(page).to have_content "Welcome to The Garden Manager!"
+  before(:each) do
+    visit '/'
   end
 
-  xit "has a link to sign in" do
+  it 'welcomes all visitors' do
+    expect(page).to have_content('Hi there! Please Login or Sign Up to see your garden dashboard.')
+  end
 
+  it 'has a link to log in' do
+    expect(page).to have_link('Login')
+  end
+
+  it 'has a link to register new user' do
+    expect(page).to have_link('Sign Up')
   end
 end

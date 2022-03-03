@@ -1,0 +1,37 @@
+<% flash.each do |name, msg|%>
+  <div class="alert alert-success" role="alert">
+    <%= content_tag :div, msg, class: name %>
+  </div>
+<% end %>
+  <section id='plants'>
+    <dl>
+      <h2>Plants!</h2>
+    <% @plants.each do |plant| %>
+      <div class='plant-count'>
+        <dt>Plant: <%= link_to plant.name, "/plants/#{plant.id}", method: :get %></dt>
+      <dd>Frost Date: <%= plant.frost_date%></dd>
+      <dd>Maturity: <%= plant.maturity%></dd><br>
+      <div class="plant-<%=plant.id%>">
+        <%= button_to 'Add Plant!', "/users/#{current_user.user_id}/plants", method: :post, params: {plant_id: plant.id, user_id: current_user.user_id} %>
+      </div>
+      </div>
+    <% end %>
+    </dl>
+
+    <%= form_with url: "/plants", method: :post, html: { class: 'add-plant-form' }, local: true do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :maturity %>
+      <%= f.text_field :maturity %>
+      <%= f.label :frost_date %>
+      <%= f.text_field :frost_date %>
+      <%= f.submit "Add Plant" %>
+    <% end %>
+  </section>
+<h1>Search for a plant!</h1>
+      <%= form_tag :plants, method: :get, class: "form-inline" do %>
+        <div class="form-group search-field">
+          <%= text_field_tag(:search) %>
+          <%= submit_tag "Search!", class: "btn btn-primary" %>
+        </div>
+      <% end %>
