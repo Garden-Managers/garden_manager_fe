@@ -24,7 +24,7 @@
       <%= content_tag :div, msg, class: name %>
     </div>
   <% end %>
-  <% if current_user.zip%>
+  <% if current_user.zip.present?%>
     <section id="weather">
       <div class="card-group">
         <h4>7-Day Weather Forecast</h4>
@@ -60,7 +60,7 @@
     <% end %>
   <% else %>
     <section id="zip-form">
-      
+
       <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
         <%= f.label :zip %>
         <%= f.text_field :zip %>

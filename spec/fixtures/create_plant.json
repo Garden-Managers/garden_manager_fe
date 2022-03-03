@@ -1,0 +1,11 @@
+{
+    "data": {
+        "id": "42",
+        "type": "plant",
+        "attributes": {
+            "name": "asparagus",
+            "frost_date": 100,
+            "maturity": 12
+        }
+    }
+}

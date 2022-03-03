@@ -1,0 +1,25 @@
+  <div class='plants'>
+  <dl>
+    <h2>Plants!</h2>
+  <% @plants.each do |plant| %>
+    <div class='plant-count'>
+      <dt>Plant: <%= link_to plant.name, "/plants/#{plant.id}", method: :get %></dt>
+    <dd>Frost Date: <%= plant.frost_date%></dd>
+    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
+    <div class="plant-<%=plant.id%>">
+      <%= button_to 'Add Plant!', "/users/#{current_user.user_id}/plants", method: :post, params: {plant_id: plant.id, user_id: current_user.user_id} %>
+    </div>
+    </div>
+  <% end %>
+  </dl>
+
+  <%= form_with url: "/plants", method: :post, html: { class: 'add-plant-form' }, local: true do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :maturity %>
+    <%= f.text_field :maturity %>
+    <%= f.label :frost_date %>
+    <%= f.text_field :frost_date %>
+    <%= f.submit "Add Plant" %>
+  <% end %>
+  </div>
