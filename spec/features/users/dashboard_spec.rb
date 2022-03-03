@@ -32,14 +32,13 @@ RSpec.describe 'Users Dashboard' do
                    status: 200,
                    body: response
                  })
-
-    visit '/dashboard'
   end
 
   it 'has a seven day forecast' do
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(user)
+    visit '/dashboard'
     within '#weather' do
-      allow_any_instance_of(ApplicationController)
-        .to receive(:current_user).and_return(user)
       expect(page).to have_content('Low: 33.57° F')
       expect(page).to have_content('High: 56.16° F')
       expect(page).to have_content('Weather: Clear')
@@ -47,18 +46,20 @@ RSpec.describe 'Users Dashboard' do
   end
 
   it 'has a users frost dates and hardiness_zone' do
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(user)
+    visit '/dashboard'
     within '#frost-dates' do
-      allow_any_instance_of(ApplicationController)
-        .to receive(:current_user).and_return(user)
       expect(page).to have_content('Fall frost date: May 31, temperature 36° F')
       expect(page).to have_content('Spring frost date: May 20, temperature 32° F')
     end
   end
 
   it 'has a users plants' do
+    allow_any_instance_of(ApplicationController)
+      .to receive(:current_user).and_return(user)
+    visit '/dashboard'
     within '#plants' do
-      allow_any_instance_of(ApplicationController)
-        .to receive(:current_user).and_return(user)
       expect(page).to have_content('My Plants')
       expect(page).to have_content('Tomato')
       expect(page).to have_content('Safe planting time from frost date: 7')
