@@ -278,6 +278,7 @@ GEM
 
 PLATFORMS
   ruby
+
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 5.1.3)
