@@ -44,7 +44,7 @@ RSpec.describe 'Plants Index' do
       .to receive(:current_user).and_return(user)
     visit plants_path
 
-    within '.plants' do
+    within '#plants' do
       expect(page).to have_content('Plant: Tomato')
       expect(page).to have_content('Frost Date: 7')
       expect(page).to have_content('Maturity: 72°')
@@ -56,9 +56,7 @@ RSpec.describe 'Plants Index' do
         expect(current_path).to eq(dashboard_path)
       end
     end
-    within '.success' do
-      expect(page).to have_content('Plant added to your garden!')
-    end
+    expect(page).to have_content('Plant added to your garden!')
   end
   it 'has a form to add a plant' do
     response = File.read('spec/fixtures/plants.json')
@@ -91,8 +89,6 @@ RSpec.describe 'Plants Index' do
 
       click_on 'Add Plant'
     end
-    within '.success' do
-      expect(page).to have_content('asparagus successfully added!')
-    end
+    expect(page).to have_content('asparagus successfully added!')
   end
 end
