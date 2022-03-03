@@ -40,6 +40,12 @@ class GardenFacade
     end
   end
 
+  def self.search_plants(plant)
+    GardenService.search_plants(plant)[:data].map do |data|
+      Plant.new(data)
+    end
+  end
+
   def self.update_user(zip)
     User.new(GardenService.update_user(zip)[:data])
   end

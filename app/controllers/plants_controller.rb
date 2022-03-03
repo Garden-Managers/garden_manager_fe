@@ -1,6 +1,11 @@
 class PlantsController < ApplicationController
   def index
-    @plants = GardenFacade.all_plants
+    @plants = if params[:search].present?
+                GardenFacade.search_plants(params[:search])
+              else
+
+                GardenFacade.all_plants
+              end
   end
 
   def create

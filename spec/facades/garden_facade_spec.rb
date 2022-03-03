@@ -91,4 +91,16 @@ RSpec.describe GardenFacade do
       expect(plant).to be_a Plant
     end
   end
+  describe '#search_plants' do
+    it 'returns a plant poro' do
+      response = File.read('spec/fixtures/search_plants.json')
+      stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/plants/find?q=asparagus')
+        .to_return({
+                     status: 200,
+                     body: response
+                   })
+      plant = GardenFacade.search_plants('asparagus').first
+      expect(plant).to be_a Plant
+    end
+  end
 end

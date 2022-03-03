@@ -5,7 +5,7 @@
     <div class='plant-count'>
       <dt>Plant: <%= link_to plant.name, "/plants/#{plant.id}", method: :get %></dt>
     <dd>Frost Date: <%= plant.frost_date%></dd>
-    <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
+    <dd>Maturity: <%= plant.maturity%></dd><br>
     <div class="plant-<%=plant.id%>">
       <%= button_to 'Add Plant!', "/users/#{current_user.user_id}/plants", method: :post, params: {plant_id: plant.id, user_id: current_user.user_id} %>
     </div>
@@ -21,5 +21,12 @@
     <%= f.label :frost_date %>
     <%= f.text_field :frost_date %>
     <%= f.submit "Add Plant" %>
-  <% end %>
+  <% end %><br>
   </div>
+<h1>Search for a plant!</h1>
+      <%= form_tag :plants, method: :get, class: "form-inline" do %>
+        <div class="form-group search-field">
+          <%= text_field_tag(:search) %>
+          <%= submit_tag "Search!", class: "btn btn-primary" %>
+        </div>
+      <% end %>
