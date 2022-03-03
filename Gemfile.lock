@@ -277,8 +277,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
-  arm64-darwin-20
-
+  ruby
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 5.1.3)
