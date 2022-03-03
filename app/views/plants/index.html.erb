@@ -1,4 +1,9 @@
-  <div class='plants'>
+<% flash.each do |name, msg|%>
+  <div class="alert alert-success" role="alert">
+    <%= content_tag :div, msg, class: name %>
+  </div>
+<% end %>
+  <section id='plants'>
   <dl>
     <h2>Plants!</h2>
   <% @plants.each do |plant| %>
@@ -22,4 +27,4 @@
     <%= f.text_field :frost_date %>
     <%= f.submit "Add Plant" %>
   <% end %>
-  </div>
+  </section>
