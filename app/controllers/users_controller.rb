@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = GardenFacade.update_user(params[:zip])
+    user = GardenFacade.update_user(current_user.user_id, params[:zip])
     session[:user_id] = nil
     session[:user_id] = user.user_id
     redirect_to dashboard_path,
