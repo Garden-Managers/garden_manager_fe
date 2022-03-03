@@ -21,11 +21,11 @@ class GardenService
     json = JSON.parse(response.body, symbolize_names: true)
   end
 
-  def self.update_user(zip)
+  def self.update_user(user_id, zip)
     conn = Faraday.new('https://ancient-basin-82077.herokuapp.com') do |faraday|
       faraday.params[:zip] = zip
     end
-    response = conn.patch('/api/v1/users/1')
+    response = conn.patch("/api/v1/users/#{user_id}")
     json = JSON.parse(response.body, symbolize_names: true)
   end
 

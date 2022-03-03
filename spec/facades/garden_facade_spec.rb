@@ -61,7 +61,7 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      user = GardenFacade.update_user('80223')
+      user = GardenFacade.update_user('1', '80223')
       expect(user).to be_a User
     end
   end

@@ -50,7 +50,7 @@ class GardenFacade
     end
   end
 
-  def self.update_user(zip)
-    User.new(GardenService.update_user(zip)[:data])
+  def self.update_user(user_id, zip)
+    User.new(GardenService.update_user(user_id, zip)[:data])
   end
 end
