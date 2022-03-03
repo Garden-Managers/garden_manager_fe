@@ -3,25 +3,27 @@
     <div class ="mx-auto">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active link-success fs-2" href="/dashboard">Dashboard</a>
+          <a class="nav-link active link-success fs-3" href="/dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-success fs-2" href="/logout">Weather Forecast</a>
+          <a class="nav-link link-success fs-3" href="/logout">Weather Forecast</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-success fs-2" href="/logout">Planting Calendar</a>
+          <a class="nav-link link-success fs-3" href="/plants">Plant Library</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-success fs-2" href="/logout">My Plants</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link link-success fs-2" href="/logout">Log Out</a>
+          <a class="nav-link link-success fs-3" href="/logout">Log Out</a>
         </li>
       </ul>
     </div>
   </nav>
 </div>
 <div class="container-fluid bg-dark">
+  <% flash.each do |name, msg|%>
+    <div class="alert alert-success" role="alert">
+      <%= content_tag :div, msg, class: name %>
+    </div>
+  <% end %>
   <% if current_user.zip%>
     <section id="weather">
       <div class="card-group">
@@ -57,17 +59,13 @@
       </div>
     <% end %>
   <% else %>
-    <div class='plants'>
-    <dl>
-      <h2>My Plants</h2>
-    <% @plants.each do |plant| %>
-      <div class='plant-count'>
-     <dt>Plant: <%= plant.name %></dt>
-      <dd>Frost Date: <%= plant.frost_date%></dd>
-      <dd>Maturity: <%= plant.maturity%>&deg; F</dd><br>
-      </div>
-    <% end %>
-    </dl>
-    </div>
+    <section id="zip-form">
+      
+      <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
+        <%= f.label :zip %>
+        <%= f.text_field :zip %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    </section>
   <% end %>
 </div>
