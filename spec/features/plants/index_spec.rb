@@ -138,7 +138,7 @@ RSpec.describe 'Plants Index' do
           click_on 'Search!'
           expect(current_path).to eq(plants_path)
         end
-        within '.plants' do
+        within '#plants' do
           expect(page).to have_content('Plant: asparagus')
           expect(page).to have_content('Frost Date: 100')
           expect(page).to have_content('Maturity: 12')
