@@ -146,8 +146,7 @@ RSpec.describe 'Plants Index' do
         end
       end
     end
-  end 
-end 
+  end
   describe 'when not a user' do
     it 'returns the visitor to the root path' do
       visit plants_path
