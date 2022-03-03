@@ -76,6 +76,10 @@ class GardenService
     get_url("plants/find?q=#{plant}")
   end
 
+  def self.get_plant(id)
+    get_url("plants/#{id}")
+  end
+
   def self.get_url(url)
     response = Faraday.get("https://ancient-basin-82077.herokuapp.com/api/v1/#{url}")
     JSON.parse(response.body, symbolize_names: true)

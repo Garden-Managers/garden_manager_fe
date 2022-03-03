@@ -8,6 +8,10 @@ class PlantsController < ApplicationController
               end
   end
 
+  def show
+    @plant = GardenFacade.plant(params[:id])
+  end
+
   def create
     plant = GardenFacade.add_plant(plant_params)
     if plant
