@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html style="background-image:url('https://cdn.pixabay.com/photo/2017/01/24/03/53/plant-2004483_960_720.jpg'); background-size:cover; color:Crimson;">
+<html>
   <head>
-    <title>GardenManagerFe</title>
+    <title>Garden Manager</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,14 +10,14 @@
   </head>
 
   <body>
+    <div class="container-fluid bg-dark">
+      <img src="https://user-images.githubusercontent.com/88950699/156276694-1cf205c3-8e83-4fb9-a0ab-4ca1da748312.jpeg" class="img-fluid rounded mx-auto d-block" alt="Garden Manager">
+    </div>
     <% flash.each do |name, msg|%>
-      <%= content_tag :div, msg, class: name%>
+      <div class="alert alert-success" role="alert">
+        <%= content_tag :div, msg, class: name %>
+      </div>
     <% end %>
     <%= yield %>
   </body>
-  <footer>
-    <% if current_user %>
-      <%= link_to 'Logout', '/logout' %>
-    <% end %>
-  </footer>
 </html>

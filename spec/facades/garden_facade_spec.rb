@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GardenFacade do
-  let(:facade) { GardenFacade.new }
   describe '#frost_dates' do
     it '#returns a frost date poros/1' do
       response = File.read('spec/fixtures/frost_dates.json')
@@ -10,9 +9,9 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      expect(facade.frost_dates('1').first).to be_a FrostDate
-      expect(facade.frost_dates('1').last).to be_a FrostDate
-      expect(facade.frost_dates('1').count).to eq(2)
+      expect(GardenFacade.frost_dates('1').first).to be_a FrostDate
+      expect(GardenFacade.frost_dates('1').last).to be_a FrostDate
+      expect(GardenFacade.frost_dates('1').count).to eq(2)
     end
   end
 
@@ -24,7 +23,7 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      forecast = facade.forecast(1).first
+      forecast = GardenFacade.forecast(1).first
       expect(forecast).to be_a Forecast
     end
   end
@@ -37,7 +36,7 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      user = facade.find_user(1)
+      user = GardenFacade.find_user(1)
       expect(user).to be_a User
     end
   end
@@ -49,7 +48,7 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      facade.plants(1).each do |plant|
+      GardenFacade.plants(1).each do |plant|
         expect(plant).to be_a Plant
       end
     end
@@ -62,7 +61,7 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      user = facade.update_user('80223')
+      user = GardenFacade.update_user('80223')
       expect(user).to be_a User
     end
   end
@@ -75,7 +74,7 @@ RSpec.describe GardenFacade do
                      body: response
                    })
 
-      facade.all_plants.each do |plant|
+      GardenFacade.all_plants.each do |plant|
         expect(plant).to be_a Plant
       end
     end
@@ -88,7 +87,7 @@ RSpec.describe GardenFacade do
                      status: 200,
                      body: response
                    })
-      plant = facade.add_plant({ name: 'asparagus', frost_date: '12', maturity: '100' })
+      plant = GardenFacade.add_plant({ name: 'asparagus', frost_date: '12', maturity: '100' })
       expect(plant).to be_a Plant
     end
   end

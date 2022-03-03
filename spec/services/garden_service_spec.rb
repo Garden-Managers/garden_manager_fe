@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GardenService do
-  let(:service) { GardenService.new }
   describe '#get_frost_dates/1' do
     it 'returns a list of json frost dates' do
       response = File.read('spec/fixtures/frost_dates.json')
@@ -10,7 +9,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      frost = service.get_frost_dates(1)
+      frost = GardenService.get_frost_dates(1)
       expect(frost).to be_a Array
       expect(frost.first).to be_a Hash
       expect(frost.last).to be_a Hash
@@ -30,7 +29,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      forecast = service.get_forecast(1)
+      forecast = GardenService.get_forecast(1)
       expect(forecast).to be_a Hash
       expect(forecast[:attributes][:weekly_forecast].first).to be_a Hash
       expect(forecast[:attributes][:weekly_forecast].first).to have_key(:weather)
@@ -51,7 +50,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      user = service.get_user(1)
+      user = GardenService.get_user(1)
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
       expect(user[:data]).to have_key(:user_id)
@@ -66,7 +65,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      user = service.create_user('happy22@example.com', 'Raccoon22')
+      user = GardenService.create_user('happy22@example.com', 'Raccoon22')
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
       expect(user[:data][:id]).to be_a String
@@ -82,7 +81,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      user = service.update_user('80223')
+      user = GardenService.update_user('80223')
       expect(user).to be_a Hash
       expect(user[:data]).to be_a Hash
       expect(user[:data][:id]).to be_a String
@@ -101,7 +100,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      plants = service.get_user_plants(1)
+      plants = GardenService.get_user_plants(1)
       plant = plants[:data].first
       expect(plants).to be_a Hash
       expect(plants[:data]).to be_a Array
@@ -124,7 +123,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      plants = service.all_plants
+      plants = GardenService.all_plants
       plant = plants[:data].first
       expect(plants).to be_a Hash
       expect(plants[:data]).to be_a Array
@@ -147,7 +146,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      plant = service.create_plant('asparagus', '100', '12')
+      plant = GardenService.create_plant('asparagus', '100', '12')
       expect(plant).to be_a Hash
       expect(plant[:data]).to be_a Hash
       expect(plant[:data][:attributes]).to have_key(:name)
@@ -168,7 +167,7 @@ RSpec.describe GardenService do
                      status: 200,
                      body: response
                    })
-      user_plant = service.create_user_plant('1', '1')
+      user_plant = GardenService.create_user_plant('1', '1')
       expect(user_plant).to be_a Hash
       expect(user_plant[:data]).to be_a Hash
       expect(user_plant[:data][:relationships]).to have_key(:user)

@@ -1,8 +1,35 @@
-<h1>Welcome to The Garden Manager!</h1>
-
-<% if !current_user %>
-  <%= link_to 'Login', '/auth/google_oauth2' %>
-  <%= link_to 'Sign Up', '/auth/google_oauth2' %>
-<% else %>
-  <%= link_to 'Return to Dashboard', '/dashboard' %>
-<% end %>
+<div class="container-fluid bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class ="mx-auto">
+      <ul class="nav">
+        <% if !current_user %>
+          <span class="navbar-text fs-3 text-light text-opacity-75">
+            Hi there! Please
+          </span>
+          <li class="nav-item">
+            <a class="nav-link link-success fs-2" href="/auth/google_oauth2">Login</a>
+          </li>
+          <span class="navbar-text fs-3 text-light text-opacity-75 align-middle">
+            or
+          </span>
+          <li class="nav-item">
+            <a class="nav-link link-success fs-2" href="/auth/google_oauth2">Sign Up</a>
+          </li>
+          <span class="navbar-text fs-3 text-light text-opacity-75 align-middle">
+            to see your garden dashboard.
+          </span>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link link-success fs-2" href="/dashboard">Return to Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link link-success fs-2" href="/logout">Log Out</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
+<div class="container-fluid bg-dark">
+  <img src="https://user-images.githubusercontent.com/88950699/156293604-09ee5c8e-f090-45ee-84b7-3c085fb4f740.jpg" class="img-fluid rounded mx-auto d-block" alt="Garden Manager">
+</div>
