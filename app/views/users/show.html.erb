@@ -6,9 +6,6 @@
           <a class="nav-link active link-success fs-3" href="/dashboard">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link link-success fs-3" href="/logout">Weather Forecast</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link link-success fs-3" href="/plants">Plant Library</a>
         </li>
         <li class="nav-item">
@@ -31,7 +28,7 @@
           <section id="weather">
             <div class="container-fluid bg-dark">
               <div class="grid">
-                <div class="badge rounded-pill bg-secondary text-wrap" style="width: 10rem;">
+                <div class="badge bg-dark text-wrap" style="width: 10rem;">
                   <h4>7-Day Forecast</h4>
                 </div>
                 <% @forecast.each do |forecast| %>
@@ -96,11 +93,22 @@
       </div>
   <% else %>
     <section id="zip-form">
-      <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
-        <%= f.label :zip %>
-        <%= f.text_field :zip %>
-        <%= f.submit "Submit" %>
-      <% end %>
+      <div class="badge bg-dark">
+        <h4>Enter your zip code to generate your personalized dashboard: </h4>
+      </div>
+      <div class="container-fluid bg-dark">
+        <%= form_with url: "/users/#{current_user.user_id}", method: :patch, html: { class: 'zip-form' }, local: true do |f| %>
+          <%= f.label "zip code" %>
+          <%= f.text_field :zip %>
+          <%= f.submit "Submit" %>
+        <% end %>
+      </div>
+      <div class="container-fluid bg-dark">
+        <div class="card bg-dark border-dark">
+          <div class="card-body">
+          </div>
+        </div>
+        <img src="https://user-images.githubusercontent.com/88950699/156636405-7cdef4f0-73fb-4937-8a16-63f1d6352b97.jpg" class="img-fluid rounded mx-auto d-block" alt="Garden Manager Dashboard">
     </section>
   <% end %>
 </div>
