@@ -4,8 +4,6 @@ class UsersController < ApplicationController
       @forecast = GardenFacade.forecast(current_user.user_id)
       @fall, @spring = GardenFacade.frost_dates(current_user.user_id)
       @plants = GardenFacade.plants(current_user.user_id)
-    else
-      @plants = GardenFacade.plants(current_user.user_id)
     end
   end
 
