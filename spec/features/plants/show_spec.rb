@@ -17,13 +17,19 @@ RSpec.describe 'plants show page', type: :feature do
                    status: 200,
                    body: response
                  })
+     response = File.read('spec/fixtures/plants.json')
+     stub_request(:get, 'https://ancient-basin-82077.herokuapp.com/api/v1/users/1/plants')
+       .to_return({
+                    status: 200,
+                    body: response
+                  })
 
     visit plant_path(42)
 
-    within '.plant' do
-      expect(page).to have_content('Plant: asparagus')
-      expect(page).to have_content('Maturity: 12')
-      expect(page).to have_content('Frost Date: 100')
+    within "#plant-details" do
+      expect(page).to have_content('asparagus')
+      expect(page).to have_content('Days to maturity: 12')
+      expect(page).to have_content('Safe planting time from frost date: 100')
     end
   end
 end
