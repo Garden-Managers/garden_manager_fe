@@ -1,37 +1,125 @@
+<div class="container-fluid bg-dark">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class ="mx-auto">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link link-success fs-3" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active link-success fs-3" href="/plants">Plant Library</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-success fs-3" href="/logout">Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 <% flash.each do |name, msg|%>
   <div class="alert alert-success" role="alert">
     <%= content_tag :div, msg, class: name %>
   </div>
 <% end %>
-  <section id='plants'>
-    <dl>
-      <h2>Plants!</h2>
-    <% @plants.each do |plant| %>
-      <div class='plant-count'>
-        <dt>Plant: <%= link_to plant.name, "/plants/#{plant.id}", method: :get %></dt>
-      <dd>Frost Date: <%= plant.frost_date%></dd>
-      <dd>Maturity: <%= plant.maturity%></dd><br>
-      <div class="plant-<%=plant.id%>">
-        <%= button_to 'Add Plant!', "/users/#{current_user.user_id}/plants", method: :post, params: {plant_id: plant.id, user_id: current_user.user_id} %>
-      </div>
-      </div>
-    <% end %>
-    </dl>
-
-    <%= form_with url: "/plants", method: :post, html: { class: 'add-plant-form' }, local: true do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :maturity %>
-      <%= f.text_field :maturity %>
-      <%= f.label :frost_date %>
-      <%= f.text_field :frost_date %>
-      <%= f.submit "Add Plant" %>
-    <% end %>
-  </section>
-<h1>Search for a plant!</h1>
-      <%= form_tag :plants, method: :get, class: "form-inline" do %>
-        <div class="form-group search-field">
-          <%= text_field_tag(:search) %>
-          <%= submit_tag "Search!", class: "btn btn-primary" %>
+<div class='container-fluid bg-dark'>
+  <div class='row'>
+    <div class='col-6'>
+      <section id='plant-search'>
+        <div class='container-fluid bg-dark text-white'>
+          <div class='card text-center border-dark'>
+            <div class='card-header text-white bg-dark'>
+              <h4>Search for a plant:</h4>
+            </div>
+            <div class='card-body'>
+              <p class='card-text'>
+                <%= form_tag :plants, method: :get, class: "form-inline" do %>
+                  <%= text_field_tag(:search) %>
+                  <%= submit_tag "Search!", class: "btn btn-primary" %>
+                <% end %>
+              </p>
+            </div>
+          </div>
         </div>
-      <% end %>
+      </section>
+    </div>
+    <div class='col-6'>
+      <section id='plant-new'>
+        <div class='container-fluid bg-dark'>
+          <div class='card border-dark'>
+            <div class='card-header text-white bg-dark'>
+              <h4>Didn't find the plant you're looking for in our database? Add it here!</h4>
+            </div>
+            <div class='card-body'>
+              <p class='card-text'>
+                <%= form_with url: "/plants", method: :post, html: { class: 'add-plant-form' }, local: true do |f| %>
+                  <%= f.label 'Plant name:' %>
+                  <%= f.text_field :name  %><br>
+                  <%= f.label 'Safe planting time from last frost date:' %>
+                  <%= f.text_field :frost_date, size: 4, maxlength: 4 %><br>
+                  <%= f.label 'Days to maturity:' %>
+                  <%= f.text_field :maturity, size: 4, maxlength: 4 %><br>
+
+                  <%= f.submit "Add plant!" %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <span class="border-bottom border-dark border-5">
+      <div class='col-6'>
+        <div class='card text-center bg-dark border-dark'>
+          <div class='badge rounded-pill bg-success text-white'>
+            <br>
+            <h4>  Browse Plants  </h4><br>
+          </div>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+<div class='container-fluid bg-dark'>
+  <section id='plant-list'>
+    <div class='container-fluid bg-dark'>
+      <div class='row row-cols-4 g-3'>
+        <% @plants.each do |plant| %>
+          <div class='col-3'>
+            <div class='card text-center border-dark' style='width: 12rem;'>
+              <div id='plant-count'>
+                <div class='card-header'>
+                  <%= link_to plant.name, "/plants/#{plant.id}", method: :get %>
+                </div>
+                <div class='card-body'>
+                  <p class='card-text'>
+                    Safe planting time from frost date:<br>
+                    <%= plant.frost_date%> days <br>
+                    Days to maturity: <%= plant.maturity%><br>
+                  </p>
+                </div>
+                <div id="plant-<%=plant.id%>">
+                  <%= button_to 'Add to my plants', "/users/#{current_user.user_id}/plants", method: :post, params: {plant_id: plant.id, user_id: current_user.user_id} %><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+<div class='container-fluid bg-dark'>
+  <div class='card bg-dark border-dark'>
+    <div class='card-header bg-dark'>
+
+    </div>
+      <div class='card-body'>
+        <p class='card-text'>
+
+
+
+
+
+        </p>
+      </div>
+  </div>
+</div>
