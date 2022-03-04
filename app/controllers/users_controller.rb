@@ -9,7 +9,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = GardenFacade.update_user(current_user.user_id, params[:zip])
+    2.times do
+      GardenFacade.update_user(current_user.user_id, params[:zip])
+    end
+    user = GardenFacade.find_user(current_user.user_id)
     session[:user_id] = nil
     session[:user_id] = user.user_id
     redirect_to dashboard_path,
